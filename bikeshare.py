@@ -26,7 +26,7 @@ def get_filters():
         else:
             city=input('Please Enter Correct city name:').lower()
 
-    # TO DO: get user input for month (all, january, february, ... , june)
+    # get user input for month (all, january, february, ... , june)
     month = input('\nWhich month? January, February, March, April, May, or June?\n').lower()
     
     while(True):
@@ -35,7 +35,7 @@ def get_filters():
         else:
             month = input('Please Enter valid month name\n').lower()
             
-    # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
+    # get user input for day of week (all, monday, tuesday, ... sunday)
     day=input('Which day of the week or enter all  to display data of all days?\n').lower()
     
     while(True):
@@ -80,15 +80,15 @@ def time_stats(df):
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
 
-    # TO DO: display the most common month
+    # display the most common month
     most_popular_month = df['Start Time'].dt.month.mode()[0]
     print('Most Common Month:', most_popular_month)
 
-    # TO DO: display the most common day of week
+    # display the most common day of week
     most_popular_day = df['Start Time'].dt.weekday_name.mode()[0]
     print('Most Common day of week:', most_popular_day)
 
-    # TO DO: display the most common start hour
+    #display the most common start hour
     df['hour'] = df['Start Time'].dt.hour
     most_popular_hour = df['hour'].mode()[0]
     print('Most Common Start Hour:', most_popular_hour)
@@ -103,7 +103,7 @@ def station_stats(df):
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
 
-    # TO DO: display most commonly used start station
+    #  display most commonly used start station
     Start_Station = df['Start Station'].value_counts().idxmax()
     print('Most Commonly used start station:', Start_Station)
 
@@ -111,7 +111,7 @@ def station_stats(df):
     End_Station = df['End Station'].value_counts().idxmax()
     print('\nMost Commonly used end station:', End_Station)
 
-    # TO DO: display most frequent combination of start station and end station trip
+    #  display most frequent combination of start station and end station trip
     Combination_Station = df.groupby(['Start Station', 'End Station']).count()
     print('\nMost frequently used combination of start station and end station trip:', Start_Station, " & ", End_Station)
     
@@ -126,7 +126,7 @@ def trip_duration_stats(df):
     print('\nCalculating Trip Duration...\n')
     start_time = time.time()
 
-    # TO DO: display total travel time
+    # display total travel time
     total_travel_time = df['Trip Duration'].sum()
     time_travel = total_travel_time
     day_travel = time_travel // (24 * 3600)
@@ -138,7 +138,7 @@ def trip_duration_stats(df):
     seconds_travel = time_travel
     print('\nTotal travel time is {} days {} hours {} minutes {} seconds'.format(day_travel, hour_travel, minutes_travel, seconds_travel))
 
-    # TO DO: display mean travel time
+    # display mean travel time
     mean_travel_time = df['Trip Duration'].mean()
     time_mean = mean_travel_time
     day_mean = time_mean // (24 * 3600)
@@ -160,21 +160,21 @@ def user_stats(df):
     print('\nCalculating User Stats...\n')
     start_time = time.time()
 
-    # TO DO: Display counts of user types
+    # Display counts of user types
     count_of_subscribers = df['User Type'].str.count('Subscriber').sum()
     count_of_customers = df['User Type'].str.count('Customer').sum()
     print('\nNumber of users as subscribers are {}\n'.format(int(count_of_subscribers)))
     print('\nNumber of users as customers are {}\n'.format(int(count_of_customers)))
 
     
-    # TO DO: Display counts of gender
+    # Display counts of gender
     if('Gender' in df):
         male_users = df['Gender'].str.count('Male').sum()
         female_users = df['Gender'].str.count('Female').sum()
         print('\nNumber of male users are {}\n'.format(int(male_users)))
         print('\nNumber of female users are {}\n'.format(int(female_users)))
 
-    # TO DO: Display earliest, most recent, and most common year of birth
+    # Display earliest, most recent, and most common year of birth
     if('Birth Year' in df):
         earliest_year = df['Birth Year'].min()
         most_recent_year = df['Birth Year'].max()
