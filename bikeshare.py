@@ -70,7 +70,6 @@ def load_data(city, month, day):
     if day != 'all':
         df=df[df['Start Time'].dt.weekday_name == day.title()]
         
-    print(df.head())
     return df
 
 
@@ -185,6 +184,15 @@ def user_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
+def custom_display_data(df):
+    print(df.head())
+    next = 0
+    while True:
+        user_data = input('\nWould you like to view next five row of raw data? Enter yes or no.\n')
+        if user_data.lower() != 'yes':
+            return
+        next = next + 5
+        print(df.iloc[next:next+5])
 
 def main():
     while True:
@@ -194,6 +202,7 @@ def main():
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
+        custom_display_data(df)
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
